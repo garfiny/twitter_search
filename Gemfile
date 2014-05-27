@@ -7,6 +7,7 @@ gem 'rails', '4.1.1'
 gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
+gem 'bootstrap-sass', '~> 3.1.1'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
@@ -32,7 +33,7 @@ gem 'twitter'
 group :test, :development do
   gem 'pry'
   gem 'rspec-rails'
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
 end

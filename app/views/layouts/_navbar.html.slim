@@ -1,0 +1,14 @@
+header.navbar.navbar-default.navbar-fixed-top role="navigation"
+  .container-fluid
+    .navbar-header
+      button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand href="/" Twitter Search
+    .navbar-collapse.collapse#bs-example-navbar-collapse-1
+      = form_tag("/search", class: "navbar-form navbar-right", role: "search") do
+        .form-group
+          =text_field_tag(:topic, nil, class: "form-control", placeholder: "keywords")
+        =submit_tag("Search", class: "btn btn-success")
