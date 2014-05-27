@@ -1,3 +1,23 @@
 .jumbotron
   .container
-    h1 Hello, World!
+    h1 Solr & Twitter
+    p This is a demo application to show the basic twitter api and basic solr usage. User can load users and tweets from twitter through solr api. After download the data from twitter, the applicaton automatically store them into solr repository, build the index and make them ready to search
+    p
+      a.btn.btn-primary.btn-lg role="button" href="https://dev.twitter.com" Learn more twitter api
+.container
+  .row
+    .col-md-4
+      h2 Users
+      p client the 'Load User' to load more users
+      p 
+        a.btn.btn-default href="#" role="button" Load User
+    .col-md-4
+      h2 Tweets
+      p click the 'Load Tweets' button to load the recent tweets.
+      p
+        a.btn.btn-default href="#" role="button" Load Tweets
+    .col-md-4
+      h2 Administration
+      p click the 'clear index' button below to remove all the index that already built in solr server
+      p
+        a.btn.btn-default href="#" role="button" Clear Index
