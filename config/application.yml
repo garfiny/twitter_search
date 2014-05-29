@@ -1,0 +1,12 @@
+default: &default
+  usernames_gen_limits: 10
+
+development:
+  <<: *default
+
+test: &test
+  <<: *default
+
+production:
+  <<: *default
+  generator_limits: 1000

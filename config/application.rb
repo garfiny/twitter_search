@@ -8,6 +8,8 @@ Bundler.require(*Rails.groups)
 module TwitterSearch
   class Application < Rails::Application
 
+    config.autoload_paths += %W(#{config.root}/lib)
+
     console do
       require 'pry'
       config.console = Pry
