@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :user do
     description "a soccer player"
-    lang        %w(en es zh-cn)
+    lang        "en"
     location    "Melbourne, AU"
     name        "Lionel Messi"
     screen_name "Messi"
