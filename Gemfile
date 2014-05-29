@@ -33,6 +33,9 @@ gem 'spring',        group: :development
 gem 'twitter'
 gem 'appraisal'
 
+gem 'sunspot_rails'
+gem 'sunspot_solr'
+
 group :test, :development do
   gem 'pry'
   gem 'rspec-rails'
