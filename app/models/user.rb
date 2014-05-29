@@ -1,6 +1,10 @@
-class User
-  attr_accessor :description, :lang, :location, :name
-  attr_accessor :screen_name, :time_zone, :withheld_in_countries
+class User < ActiveRecord::Base
+
+  searchable do
+    text   :description, :location
+    string :lang, :name, :screen_name, :time_zone
+    string :withheld_in_countries, multiple: true
+  end
 
   def self.from_twitter(twitter_user)
     user = self.new
