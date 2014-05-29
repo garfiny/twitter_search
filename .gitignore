@@ -28,3 +28,4 @@ solr/default/data
 solr/development/data
 solr/test/data
 solr/pids/development
+db/schema.rb
