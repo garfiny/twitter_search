@@ -7,7 +7,12 @@ describe Services::TwitterCrawler do
     def random_user
       double("TwitterUser", 
              name: Faker::Name.name,
-             description: Faker::Lorem.characters
+             description: Faker::Lorem.paragraph,
+             lang: %w(en zh-cn es).sample,
+             location: Faker::Address.city,
+             screen_name: Faker::Name.first_name,
+             time_zone: Time.now.zone,
+             withheld_in_countries: "GR, HK, MY"
             ).as_null_object
     end
 
@@ -25,6 +30,21 @@ describe Services::TwitterCrawler do
       User.count.should == limit
     end
 
-    it 'fetch recent post by crawled users'
+    it 'uses progressable to report progress' do
+      p = Services::Progressable.new
+      p.should_receive(:init)
+      p.should_receive(:make_progress).exactly(limit).times
+      subject.crawl_twitters(p)
+    end
+
+    it 'mark errors when exception raised' do
+      p = Services::Progressable.new
+      User.stub(:from_twitter) { raise "something wrong" }
+      p.should_receive(:mark_done_with_errors)
+      subject.crawl_twitters(p)
+    end
+  end
+
+  describe '#crawl_tweets' do
   end
 end

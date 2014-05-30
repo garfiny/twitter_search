@@ -5,6 +5,6 @@ FactoryGirl.define do
     location    "Melbourne, AU"
     name        "Lionel Messi"
     screen_name "Messi"
-    withheld_in_countries %w(GR, HK, MY)
+    withheld_in_countries "GR, HK, MY"
   end
 end
