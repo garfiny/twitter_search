@@ -10,7 +10,6 @@ describe User do
     allow(twitter_user).to receive(:name) { user_attributes[:name] }
     allow(twitter_user).to receive(:screen_name) { user_attributes[:screen_name] }
     allow(twitter_user).to receive(:time_zone) { user_attributes[:time_zone] }
-    allow(twitter_user).to receive(:withheld_in_countries) { user_attributes[:withheld_in_countries] }
   end
 
   describe '.from_twitter' do
@@ -21,6 +20,5 @@ describe User do
     its(:name)        { should == user_attributes[:name] }
     its(:screen_name) { should == user_attributes[:screen_name] }
     its(:time_zone)   { should == user_attributes[:time_zone] }
-    its(:withheld_in_countries) { should == user_attributes[:withheld_in_countries] }
   end
 end

@@ -29,9 +29,9 @@ module Services
       end
     end
 
-    def make_progress
+    def make_progress(item = nil)
       @progressing += 1
-      @block.call unless @block.nil?
+      @block.call(item) unless @block.nil?
     end
 
     def in_progressing?

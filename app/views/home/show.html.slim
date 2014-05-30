@@ -8,16 +8,20 @@
   .row
     .col-md-4
       h2 Users
-      p client the 'Load User' to load more users
+      p click the 'Load User' to load more twitters. The twitters' username will be randomly generated.
       p 
-        a.btn.btn-default href="/load_users" role="button" Load User
+        =link_to "Load Twitters", { controller: "twitter_loader", action: "load_users", remote: true}, class: "btn btn-info", role: "button"
     .col-md-4
       h2 Tweets
       p click the 'Load Tweets' button to load the recent tweets.
       p
-        a.btn.btn-default href="#" role="button" Load Tweets
+        a.btn.btn-info href="#" role="button" Load Tweets
     .col-md-4
       h2 Administration
       p click the 'clear index' button below to remove all the index that already built in solr server
       p
-        a.btn.btn-default href="#" role="button" Clear Index
+        a.btn.btn-danger href="#" role="button" Clear Index
+.container
+  .row.bg-success
+    .col-md-12
+      p This is a demo application to show the basic twitter api and basic solr usage. User can load users and tweets from twitter through solr api. After download the data from twitter, the applicaton automatically store them into solr repository, build the index and make them ready to search

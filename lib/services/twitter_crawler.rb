@@ -4,8 +4,13 @@ module Services
       usernames = UsernameGenerator.new.generate
       progressable.init(usernames.size) unless (progressable.nil?)
       usernames.map do |user|
-        save_user(client.user(user))
-        progressable.make_progress unless progressable.nil?
+        twitter_user = begin
+                         client.user(user)
+                       rescue
+                         nil
+                       end
+        save_user(twitter_user) unless twitter_user.nil?
+        progressable.make_progress(user) unless progressable.nil?
       end
     rescue => e
       unless progressable.nil?

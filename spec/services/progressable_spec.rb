@@ -48,13 +48,15 @@ describe Services::Progressable do
       subject.make_progress
       expect(subject.report).not_to eq(0.0)
     end
-    context 'when block given when initialize the object' do
+
+    context 'block given when initialize the object' do
+      let(:item) { "item" }
       it 'calls the block' do
         p = Proc.new { p "====" }
         progress = Services::Progressable.new(&p)
         progress.init(100)
-        p.should_receive(:call)
-        progress.make_progress
+        p.should_receive(:call).with(item)
+        progress.make_progress(item)
       end
     end
   end
