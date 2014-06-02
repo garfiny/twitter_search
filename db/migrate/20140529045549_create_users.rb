@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :withheld_in_countries 
       t.text   :description
       t.text   :location
+      t.timestamps
     end
   end
 end
