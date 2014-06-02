@@ -20,19 +20,24 @@ module Services
     end
 
     def report
-      if (@errors.blank?)
-        @progressing ||= 0
-        @total_number ||= 1.to_f
-        @progressing / @total_number
+      return @errors unless @errors.blank?
+      if block_given?
+        yield current_progress
       else
-        @errors
+        current_progress
       end
     end
 
     def make_progress(item = nil)
       @progressing += 1
       @block.call(item) unless @block.nil?
+      current_progress
     end
+
+    def current_progress
+      @progressing / @total_number
+    end
+    private :current_progress
 
     def in_progressing?
       @progressing < @total_number && @errors.blank?

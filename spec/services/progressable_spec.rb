@@ -31,13 +31,22 @@ describe Services::Progressable do
     end
 
     context 'when progressing normally' do
-      it 'returns 0 when progressable not initialized' do
-        expect(subject.report).to eq(0)
+      context 'when there is no block given' do
+        it 'returns progress percentage' do
+          subject.init(total)
+          subject.instance_variable_set(:@progressing, 1)
+          expect(subject.report).to eq(1 / total.to_f)
+        end
       end
-      it 'returns progress percentage' do
-        subject.init(total)
-        subject.instance_variable_set(:@progressing, 1)
-        expect(subject.report).to eq(1 / total.to_f)
+
+      context 'when there is block given' do
+        it 'calls block and passing the progress percentage' do
+          subject.init(total)
+          subject.instance_variable_set(:@progressing, 1)
+          block_called = false
+          subject.report { |k| block_called = true }
+          expect(block_called).to be_true
+        end
       end
     end
   end
@@ -47,6 +56,11 @@ describe Services::Progressable do
       subject.init(total)
       subject.make_progress
       expect(subject.report).not_to eq(0.0)
+    end
+
+    it 'returns percentage' do
+      subject.init(total)
+      expect(subject.make_progress).to eq(1 / total.to_f)
     end
 
     context 'block given when initialize the object' do
