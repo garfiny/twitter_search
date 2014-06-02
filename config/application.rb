@@ -10,6 +10,10 @@ module TwitterSearch
 
     config.autoload_paths += %W(#{config.root}/lib)
 
+    config.generators do |g|
+      g.assets false
+    end
+
     console do
       require 'pry'
       config.console = Pry

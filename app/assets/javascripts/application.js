@@ -13,6 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap
+//= require bootstrap-progressbar
 //= require_tree .
-//= require "bootstrap"
-//= require bootstrap-progressbar.js
