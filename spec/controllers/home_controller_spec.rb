@@ -8,5 +8,4 @@ describe HomeController do
       expect(response).to render_template(:show)
     end
   end
-
 end

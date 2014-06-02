@@ -3,10 +3,10 @@ module Services
     def crawl_twitters(progressable = nil)
       usernames = UsernameGenerator.new.generate
       progressable.init(usernames.size) unless (progressable.nil?)
-      usernames.map do |user|
+      usernames.each do |user|
         twitter_user = begin
                          client.user(user)
-                       rescue
+                       rescue => ex
                          nil
                        end
         save_user(twitter_user) unless twitter_user.nil?

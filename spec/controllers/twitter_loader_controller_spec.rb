@@ -8,7 +8,7 @@ describe TwitterLoaderController do
     end
 
     it 'crawl twitter users' do
-      get :load_users
+      xhr :get, :load_users
       expect(response.status).to eq(200)
     end
   end

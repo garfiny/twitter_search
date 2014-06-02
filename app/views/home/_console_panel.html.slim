@@ -1,11 +1,11 @@
-.container#progress_panel
+.container#progress_panel.hide
   .row
     .col-sm-12
       .panel.panel-success
         .panel-heading
           h3.panel-title Progress
           .progress
-            .progress-bar.m-callback role="progressbar" aria-valuetransitiongoal="100"
+            .progress-bar role="progressbar" aria-valuenow="0" aria-valuetransitiongoal="0"
         .panel-body
-          p update
-            span id="m-callback-update"
+          span#m-callback-update
+          span#m-callback-done

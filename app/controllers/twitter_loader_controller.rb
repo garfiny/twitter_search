@@ -1,26 +1,30 @@
 class TwitterLoaderController < ApplicationController
+  include CrawlerMonitor
 
   helper ApplicationHelper
 
   def load_users
-    # crawler.crawl_twitters(progress_reporter)
+    crawl_twitters
     respond_to do |format|
-      format.js { render action: 'show_progress', status: :ok }
+      format.js
     end
   end
 
   def show_progress
+    respond_to do |format|
+      format.json { render json: monitor_progress.to_json }
+    end
   end
 
   private
 
-  def crawler
-   @crawler ||= Services::TwitterCrawler.new
+  def crawl_twitters
+    Thread.new { 
+      crawler.crawl_twitters progress_reporter("twitter crawler")
+    }
   end
 
-  def progress_reporter
-    Services::Progressable.new do |item|
-      p "=======#{item.inspect}==============="
-    end
+  def crawler
+   @crawler ||= Services::TwitterCrawler.new
   end
 end

@@ -43,9 +43,10 @@ module Services
       @progressing < @total_number && @errors.blank?
     end
 
-    def mark_done_with_errors(errors)
+    def mark_done_with_errors(errors, item = nil)
       @errors << errors
       @errors.flatten!
+      @block.call(item) unless @block.nil?
     end
   end
 end

@@ -10,7 +10,7 @@
       h2 Users
       p click the 'Load User' to load more twitters. The twitters' username will be randomly generated.
       p 
-        =link_to "Load Twitters", { controller: "twitter_loader", action: "load_users", remote: true}, class: "btn btn-info", role: "button", id: "m-callback"
+        =link_to "Load Twitters", { controller: "twitter_loader", action: "load_users", remote: true, format: 'js'}, class: "btn btn-info", role: "button", id: "m-callback"
     .col-md-4
       h2 Tweets
       p click the 'Load Tweets' button to load the recent tweets.
