@@ -8,7 +8,7 @@ header.navbar.navbar-default.navbar-fixed-top role="navigation"
         span.icon-bar
       a.navbar-brand href="/" Twitter Search
     .navbar-collapse.collapse#bs-example-navbar-collapse-1
-      = form_tag("/search", class: "navbar-form navbar-right", role: "search") do
+      = form_tag("/search", method: 'get', class: "navbar-form navbar-right", role: "search") do
         .form-group
           =text_field_tag(:topic, nil, class: "form-control", placeholder: "keywords")
         =submit_tag("Search", class: "btn btn-success")
