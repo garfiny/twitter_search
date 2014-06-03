@@ -57,21 +57,21 @@ describe Services::Progressable do
       subject.make_progress
       expect(subject.report).not_to eq(0.0)
     end
+  end
 
-    it 'returns percentage' do
+  describe '#current_progress' do
+    it 'returns current progressing number' do
       subject.init(total)
-      expect(subject.make_progress).to eq(1 / total.to_f)
+      subject.instance_variable_set(:@progressing, 1)
+      expect(subject.current_progress).to eq(1)
     end
+  end
 
-    context 'block given when initialize the object' do
-      let(:item) { "item" }
-      it 'calls the block' do
-        p = Proc.new { p "====" }
-        progress = Services::Progressable.new(&p)
-        progress.init(100)
-        p.should_receive(:call).with(item)
-        progress.make_progress(item)
-      end
+  describe '#percentage' do
+    it 'returns current progressing percentage' do
+      subject.init(total)
+      subject.instance_variable_set(:@progressing, 1)
+      expect(subject.percentage).to eq(0.01)
     end
   end
 

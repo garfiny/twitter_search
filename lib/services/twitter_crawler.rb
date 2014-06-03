@@ -28,7 +28,7 @@ module Services
     end
 
     def save_user(user)
-      User.from_twitter(user).save!
+      User.from_twitter(user).save(validate: false)
     end
   end
 end
