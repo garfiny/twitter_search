@@ -11,8 +11,10 @@ class TwitterLoaderController < ApplicationController
   end
 
   def show_progress
+    progress = Progress.in_progress
+    p progress.to_json
     respond_to do |format|
-      format.json { render json: monitor_progress.to_json }
+      format.json { render json: progress.to_json }
     end
   end
 
@@ -20,7 +22,7 @@ class TwitterLoaderController < ApplicationController
 
   def crawl_twitters
     Thread.new { 
-      crawler.crawl_twitters progress_reporter("twitter crawler")
+      crawler.crawl_twitters Services::ProgressableDb.new
     }
   end
 

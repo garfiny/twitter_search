@@ -1,6 +1,8 @@
 class Progress < ActiveRecord::Base
 
-  scope :in_progress, -> { where(status: 'running') } 
+  def self.in_progress
+    Progress.last
+  end
 
   def running?
     self.status == 'running'

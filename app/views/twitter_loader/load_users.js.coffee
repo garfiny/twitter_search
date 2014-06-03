@@ -3,7 +3,11 @@ $(document).ready ->
   $ps = $('.progress-bar')
   timer_id = setInterval ->
     $.get '/show_progress', (data) ->
-      if data['progress'] * 100 >= 100
+      console.log(data)
+      if (data.progress == null)
+          return
+      if data.status == 'done'
         clearInterval timer_id
-      $ps.attr('aria-valuetransitiongoal', data['progress'] * 100).progressbar()
+      $('#m-callback-update').html("<span>#{data.report} -- #{data.progress * 100}% </span>")
+      $ps.attr('aria-valuetransitiongoal', data.progress * 100).progressbar()
   , 1000
