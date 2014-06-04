@@ -24,8 +24,11 @@ config/secrets.yml
 .rvmrc
 **.swp
 Gemfile.lock
-solr/default/data
+solr/default/**
 solr/development/data
-solr/test/data
-solr/pids/development
+solr/development/tweets/data
+solr/development/users/data
+solr/test/tweets/data
+solr/test/users/data
+solr/pids/**
 db/schema.rb
