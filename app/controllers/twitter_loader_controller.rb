@@ -1,5 +1,4 @@
 class TwitterLoaderController < ApplicationController
-  include CrawlerMonitor
 
   helper ApplicationHelper
 

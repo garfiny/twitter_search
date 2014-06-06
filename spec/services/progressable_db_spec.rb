@@ -15,7 +15,7 @@ describe Services::ProgressableDb do
     it 'update progress record' do
       subject.init(total)
       subject.make_progress
-      expect(Progress.last.progress).to eq(subject.current_progress)
+      expect(Progress.last.progress).to eq(subject.percentage)
     end
   end
 
