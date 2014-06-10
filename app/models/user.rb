@@ -1,10 +1,5 @@
 class User < ActiveRecord::Base
 
-  searchable do
-    text   :description, :location
-    string :lang, :name, :screen_name, :time_zone
-  end
-
   def self.from_twitter(twitter_user)
     user = self.new
     user.description = twitter_user.description
