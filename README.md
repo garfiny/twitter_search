@@ -19,3 +19,4 @@ solr based tweets search demo
 * load github
 * find other social network web sites
 * Perform same search based on RDBMS/Document-Oriented NoSQL/FullText search engine - Solr|ElasticSearch
+* Check Yahoo GeoPlanet Where on Earth ID(WOEID)

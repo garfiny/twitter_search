@@ -31,4 +31,5 @@ solr/development/users/data
 solr/test/tweets/data
 solr/test/users/data
 solr/pids/**
+solr/data/**
 db/schema.rb

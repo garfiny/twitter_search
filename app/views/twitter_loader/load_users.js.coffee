@@ -6,7 +6,7 @@ $(document).ready ->
       console.log(data)
       if (data.progress == null)
           return
-      if data.status == 'done'
+      if data.status == 'done' or data.status == 'failed'
         clearInterval timer_id
       $('#m-callback-update').html("<span>#{data.report} -- #{data.progress * 100}% </span>")
       $ps.attr('aria-valuetransitiongoal', data.progress * 100).progressbar()

@@ -2,6 +2,5 @@
 <solr persistent="false">
   <cores adminPath="/admin/cores" host="${host:}" hostPort="${jetty.port:}">
     <core name="tweets" instanceDir="tweets"/>
-    <core name="users" instanceDir="users"/>
   </cores>
 </solr>

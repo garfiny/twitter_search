@@ -1,10 +1,10 @@
 class TwitterSearchController < ApplicationController
 
   def search
-    p params[:topic]
-    User.search do
-
+    r = User.search do
+      with :screen_name, params[:topic]
     end
+    binding.pry
     render 'twitter_search/search_result'
   end
 end
