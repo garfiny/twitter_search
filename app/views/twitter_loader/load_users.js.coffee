@@ -3,7 +3,6 @@ $(document).ready ->
   $ps = $('.progress-bar')
   timer_id = setInterval ->
     $.get '/show_progress', (data) ->
-      console.log(data)
       if (data.progress == null)
           return
       if data.status == 'done' or data.status == 'failed'
