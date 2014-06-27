@@ -19,11 +19,15 @@ module Services
     end
 
     def crawl_trends(progressable = nil)
-      client.trends.each do |t|
+      trends = client.trends
+      progressable.init(trends.count) unless (progressable.nil?)
+      trends.each do |t|
+        p t
         save_tweet(t)
         progressable.make_progress(t) unless progressable.nil?
       end
     rescue => e
+      p e
       unless progressable.nil?
         progressable.mark_done_with_errors(e.message) 
       end
@@ -40,7 +44,7 @@ module Services
     end
 
     def save_tweet(tweet)
-      Tweet.from_twitter(tweet).save(validate: false)
+      Trend.from_twitter(tweet).save(validate: false)
     end
   end
 end

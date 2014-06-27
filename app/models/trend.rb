@@ -5,8 +5,7 @@ class Trend < ActiveRecord::Base
     t.events = trend.events
     t.name   = trend.name
     t.query  = trend.query
-    t.url    = trend.url
-    t.promoted_content = trend.promoted_content
+    t.url    = trend.url.to_s
     t
   end
 end
