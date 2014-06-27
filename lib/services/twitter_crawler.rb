@@ -18,7 +18,15 @@ module Services
       end
     end
 
-    def crawl_tweets(progressable = nil)
+    def crawl_trends(progressable = nil)
+      client.trends.each do |t|
+        save_tweet(t)
+        progressable.make_progress(t) unless progressable.nil?
+      end
+    rescue => e
+      unless progressable.nil?
+        progressable.mark_done_with_errors(e.message) 
+      end
     end
 
     private
@@ -29,6 +37,10 @@ module Services
 
     def save_user(user)
       User.from_twitter(user).save(validate: false)
+    end
+
+    def save_tweet(tweet)
+      Tweet.from_twitter(tweet).save(validate: false)
     end
   end
 end

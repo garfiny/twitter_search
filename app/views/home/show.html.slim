@@ -13,9 +13,9 @@
         =link_to "Load Twitters", { controller: "twitter_loader", action: "load_users", remote: true, format: 'js'}, class: "btn btn-info", role: "button", id: "m-callback"
     .col-md-4
       h2 Tweets
-      p click the 'Load Tweets' button to load the recent tweets.
+      p click the 'Load Twitter Trends' button to load the recent tweets.
       p
-        a.btn.btn-info href="#" role="button" Load Tweets
+        =link_to "Load Twitter Trends", { controller: "twitter_loader", action: "load_trends", remote: true, format: 'js'}, class: "btn btn-info", role: "button", id: "m-callback"
     .col-md-4
       h2 Administration
       p click the 'clear index' button below to remove all the index that already built in solr server

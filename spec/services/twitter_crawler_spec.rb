@@ -27,24 +27,38 @@ describe Services::TwitterCrawler do
     end
 
     it 'save the fected users into database' do
-      User.count.should == limit
+      expect(User.count).to eq(limit)
     end
 
     it 'uses progressable to report progress' do
       p = Services::Progressable.new
-      p.should_receive(:init)
-      p.should_receive(:make_progress).exactly(limit).times
+      expect(p).to receive(:init)
+      expect(p).to receive(:make_progress).exactly(limit).times
       subject.crawl_twitters(p)
     end
 
     it 'mark errors when exception raised' do
       p = Services::Progressable.new
-      User.stub(:from_twitter) { raise "something wrong" }
-      p.should_receive(:mark_done_with_errors)
+      allow(User).to receive(:from_twitter) { raise "something wrong" }
+      expect(p).to receive(:mark_done_with_errors)
       subject.crawl_twitters(p)
     end
   end
 
-  describe '#crawl_tweets' do
+  describe '#crawl_trends' do
+    let(:trends) { 
+      trend = double("Twitter::Trend").as_null_object
+      [trend] * 10
+    }
+
+    before do
+      allow(Rails.application.twitter_client).to receive(:trends) { trends }
+      allow_any_instance_of(Trend).to receive(:save)
+    end
+
+    it 'fetch current trends in global wide' do
+      subject.crawl_trends
+      expect(Rails.application.twitter_client).to have_received(:trends)
+    end
   end
 end

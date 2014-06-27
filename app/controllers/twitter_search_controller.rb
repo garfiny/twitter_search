@@ -4,7 +4,6 @@ class TwitterSearchController < ApplicationController
     r = User.search do
       with :screen_name, params[:topic]
     end
-    binding.pry
     render 'twitter_search/search_result'
   end
 end

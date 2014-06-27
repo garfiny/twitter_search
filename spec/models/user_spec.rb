@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe User do
   let(:user_attributes) { attributes_for(:user) }
@@ -13,12 +13,14 @@ describe User do
   end
 
   describe '.from_twitter' do
-    subject           { User.from_twitter(twitter_user) }
-    its(:description) { should == user_attributes[:description] }
-    its(:lang)        { should == user_attributes[:lang] }
-    its(:location)    { should == user_attributes[:location] }
-    its(:name)        { should == user_attributes[:name] }
-    its(:screen_name) { should == user_attributes[:screen_name] }
-    its(:time_zone)   { should == user_attributes[:time_zone] }
+    context 'create new user from twitter user' do
+      subject { User.from_twitter(twitter_user) }
+      it { expect(subject.description).to eq(user_attributes[:description]) }
+      it { expect(subject.lang).to eq(user_attributes[:lang]) }
+      it { expect(subject.location).to eq(user_attributes[:location]) }
+      it { expect(subject.name).to eq(user_attributes[:name]) }
+      it { expect(subject.screen_name).to eq(user_attributes[:screen_name]) }
+      it { expect(subject.time_zone).to eq(user_attributes[:time_zone]) }
+    end
   end
 end

@@ -45,7 +45,7 @@ describe Services::Progressable do
           subject.instance_variable_set(:@progressing, 1)
           block_called = false
           subject.report { |k| block_called = true }
-          expect(block_called).to be_true
+          expect(block_called).to eq(true)
         end
       end
     end
