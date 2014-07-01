@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  has_many :tweets
+
   def self.from_twitter(twitter_user)
     user = self.new
     user.description = twitter_user.description

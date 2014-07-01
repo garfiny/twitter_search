@@ -1,5 +1,7 @@
 class Trend < ActiveRecord::Base
 
+  has_many :tweets
+
   def self.from_twitter(trend)
     t = Trend.new
     t.events = trend.events
