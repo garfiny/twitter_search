@@ -22,7 +22,7 @@ module Services
       trends = client.trends
       progressable.init(trends.count) unless (progressable.nil?)
       trends.each do |t|
-        save_tweet(t)
+        save_trend(t)
         progressable.make_progress(t) unless progressable.nil?
       end
     rescue => e
@@ -41,7 +41,7 @@ module Services
       User.from_twitter(user).save(validate: false)
     end
 
-    def save_tweet(tweet)
+    def save_trend(tweet)
       Trend.from_twitter(tweet).save(validate: false)
     end
   end

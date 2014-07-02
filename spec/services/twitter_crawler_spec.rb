@@ -53,12 +53,16 @@ describe Services::TwitterCrawler do
 
     before do
       allow(Rails.application.twitter_client).to receive(:trends) { trends }
+      allow(Rails.application.twitter_client).to receive(:search) { trends }
       allow_any_instance_of(Trend).to receive(:save)
     end
 
     it 'fetch current trends in global wide' do
       subject.crawl_trends
       expect(Rails.application.twitter_client).to have_received(:trends)
+    end
+
+    it 'search tweets of received trend' do
     end
   end
 end
